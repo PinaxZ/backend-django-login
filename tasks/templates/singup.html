@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}   
+{% load static %}
+
+
+{% block content %}
+    <h1 class="display-3 text-center">Registro de usuario</h1>
+
+
+    <main class="container">
+        <div class="row">
+            <form action="/singup/" method="post" class="card card-body">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username">Nombre de usuario:</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Escrube tu Nombre de usuario">
+                </div>
+
+                <div class="mb-3">
+                    <label for="first_name">Nombres:</label>
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nombre(s)">
+                </div>
+
+                <div class="mb-3">
+                    <label for="last_name">Apellido:</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Apellidos">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Correo Electronico:</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="ejemplo@index.com">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1">Contraseña:</label>
+                    <input type="password" name="password1" class="form-control" id="password1" placeholder="Crea una contraseña">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password2">Confirma tu contraseña:</label>
+                    <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirma tu contraseña">
+                </div>
+
+
+                <button class="btn btn-primary">
+                    Crear Usuario
+                </button>
+
+                {{error}}
+            </form>
+        </div>
+    </main>
+
+
+{% endblock %}

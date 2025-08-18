@@ -1,0 +1,41 @@
+{% extends 'base.html' %}   
+{% load static %}
+
+{% block content %}
+
+<h1 class="display-3 text-center">Completar datos de usuario</h1>
+
+
+<main class="container">
+    <div class="row">
+        <form action="" method="post" class="card card-body">
+
+                <label for="CURP">CURP</label>
+                <input type="text" id="Nombre(s) y Apellidos" class="form-control" required>
+                
+
+                <label for="email">Correo Electronico</label>
+                <input type="email" id="email" class="form-control" required
+                placeholder="email@dominio.com">
+
+                <label for="Telefono">Numero de Telefono</label>
+                <input type="tel" id="Telefono" class="form-control" required
+                placeholder="(XX) XXX XXXX">
+
+
+                <fieldset>
+                    <legend class="test" id="test">Genero</legend>
+
+                    <label for="radio-genero">  <input type="radio" name="genero" value="Hombre" id="radio-genero">Hombre</label>
+                    <label for="radio-genero">  <input type="radio" name="genero" value="Mujer" id="radio-genero">Mujer</label>
+                    
+                </fieldset>
+
+                <input type="submit" value="Enviar formulario" class="enviar">
+
+
+            </form>
+        </div>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}   
+{% load static %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+            <h1 class="display-3 text-center">Detalles de solicitud</h1>
+            <div class="card card-body">
+            <h5>Nombre de solicitud: </h5><p>{{task.title}}</p>
+            <h5>Detalles:</h5><p>{{task.description}}</p>
+        
+            {{error}}
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">
+                    Guardar
+                </button>
+                <br>
+            </form>
+        
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <form action="{% url 'complete_task' task.id %}" method="POST" >
+                    {% csrf_token %}
+                    <br>
+                    <button class="btn btn-primary">
+                        Completar Tarea
+                    </button>
+                </form>
+            
+                <form action="{% url 'delete_task' task.id %}" method="POST" >
+                    {% csrf_token %}
+                    <br>
+                    <button class="btn btn-danger">
+                        Borrar tarea
+                    </button>
+                </form>
+            {% endif %}
+            
+    </div>
+</main>
+{% endblock %} 

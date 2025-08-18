@@ -1,0 +1,28 @@
+{% extends 'base.html' %}   
+{% load static %}
+    {% block content %}
+
+    <main class="container">
+        <div class="row">
+
+            {% if user.is_authenticated %}
+                <h1 class="display-3 text-center">Hacer solicitud</h1>
+                {{error}}
+                <form action="/create/task/" method="POST" class="card card-body">
+                    {% csrf_token %}
+                    {{forms}}
+                    <br>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+            {% else %}
+                <h3 class="display-3 text-center">Debes iniciar sesion para hacer una solicitud</h3>
+            {% endif %}
+
+                </form>
+            </div>
+
+        </main>
+
+    {% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}   
+{% load static %}
+
+{% block content %}
+    <body>
+
+
+        <div class="card card-body">
+            <h1 class="display-3 text-center">Entorno web para el rastreo y seguimiento de solicitudes a entidades gubernamentales</h1>
+
+
+            <section class="text-center">
+                <br>
+
+                <h4><a href="{% url 'createTask' %}" class="">Hacer solicitud</a></h4>
+                <br>
+                <h4><a href="{% url 'consulta_completed' %}" class="">Solicitudes completadas</a></h4>
+                <br>
+                <h4><a href="{% url 'consulta' %}" class="">Solicitudes Pendientes</a></h4>
+            </section>
+
+
+            <br>
+            <p id="mision" class="text-center"><em>Nuestra mision es: <strong>"Proporcionar infromacion y estatus de las solicitudes ciudadanas"</strong></em></p>
+            <p id="mision" class="text-center"><em>Nuestra vision es: <strong>"Dar solucion a los problemas en la localidad y a yudar a prevenirlos a futuro"</strong></em></p>
+        
+        </div>
+    </body>
+{% endblock %}

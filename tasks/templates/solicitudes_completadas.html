@@ -1,0 +1,38 @@
+{% extends 'base.html' %}   
+{% load static %}
+    {% block content %}
+    <h1 class="text-center">{{error}}</h1>
+        <main class="container">
+            <div class="row">
+
+                <h1 class="display-3 text-center">Solicitudes Completadas</h1>
+                <ul class="list-group">
+                    
+                    {% for task in tasks %}
+                        <a class="list-group-item"> 
+                            
+                            <header class="d-flex justify-content-between">
+                                <h4 class="fw-bold">Task title: {{task.title}}</h4>
+                                <p>Nombre de Usuario de tarea: {{task.user}}</p>
+                            </header>
+                            <p>Informacion de solicitud: {{task.description}}</p>
+                            <p>Fecha estimada de complimiento: {{task.completedate}}</p>
+            
+                            {% if task.important  %}
+                                <p>Accion con ALTO grado de importancia</p>
+                            {% else %}
+                                <p>Accion no urgente</p>
+                            {% endif %}
+
+
+                        </a>
+                    {% endfor %}
+                </ul>
+                
+            
+            </div>
+                
+        </main>
+
+    {% endblock %}
+

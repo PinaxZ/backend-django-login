@@ -42,7 +42,6 @@ def singup(request):
         print('Getting Data')
         if request.POST['password1'] == request.POST['password2']:
             try:
-                #aqui se registra el usuario
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], first_name=request.POST['first_name'], last_name=request.POST['last_name'] ,email=request.POST['email'])
                 user.save()
                 login(request, user)
@@ -137,19 +136,10 @@ def consulta_completadas(request):
 
 @csrf_exempt
 def login_api(request):
-    """
-    Endpoint API para login desde Angular.
-    Si las credenciales son correctas, crea la sesión y devuelve a qué URL redirigir.
-    """
     if request.method != 'POST':
         return JsonResponse({'detail': 'Method not allowed'}, status=405)
 
-    # Lee JSON; si viniera como form, usa request.POST como fallback.
-    try:
-        data = json.loads(request.body.decode('utf-8'))
-    except Exception:
-        data = request.POST
-
+    data = json.loads(request.body.decode('utf-8')) if request.body else request.POST
     username = (data.get('username') or '').strip()
     password = data.get('password') or ''
 
@@ -157,9 +147,5 @@ def login_api(request):
     if not user:
         return JsonResponse({'detail': 'Invalid credentials'}, status=401)
 
-    # Crea la sesión (cookie) para 127.0.0.1:8000
-    login(request, user)
-
-    # URL de destino: /consulta/
+    login(request, user)  # ← crea cookie de sesión (Set-Cookie: sessionid=...)
     return JsonResponse({'ok': True, 'redirect': '/consulta/'}, status=200)
-
